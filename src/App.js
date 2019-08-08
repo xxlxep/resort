@@ -14,8 +14,8 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/rooms/" component={Rooms} />
         <Route path="/rooms/:slug" component={SingleRoom} />
+        <Route path="/rooms/" component={Rooms} />
         <Route component={Error} />
       </Switch>
     </>
