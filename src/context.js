@@ -45,5 +45,15 @@ export default class RoomProvider extends Component {
   }
 }
 
-const RoomsConsumer = RoomContext.Consumer;
-export { RoomProvider, RoomsConsumer, RoomContext };
+const RoomConsumer = RoomContext.Consumer;
+
+export function withRoomConsumer(Component) {
+  return function ConsumerWrapper(props) {
+    return (
+      <RoomConsumer>
+        {value => <Component {...props} context={value} />}
+      </RoomConsumer>
+    );
+  };
+}
+export { RoomProvider, RoomConsumer, RoomContext };
