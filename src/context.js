@@ -50,9 +50,28 @@ export default class RoomProvider extends Component {
     const room = tempRooms.find(room => room.slug === slug);
     return room;
   };
+
+  handleChange = event => {
+    const target = event.target;
+    const value = event.type === 'checkbox' ? target.checked : target.value;
+    const name = event.target.name;
+    this.setState(
+      {
+        [name]: value,
+      },
+      this.filterRooms
+    );
+  };
+  filterRooms = () => {};
   render() {
     return (
-      <RoomContext.Provider value={{ ...this.state, getRoom: this.getRoom }}>
+      <RoomContext.Provider
+        value={{
+          ...this.state,
+          getRoom: this.getRoom,
+          handleChange: this.handleChange,
+        }}
+      >
         {this.props.children}
       </RoomContext.Provider>
     );
